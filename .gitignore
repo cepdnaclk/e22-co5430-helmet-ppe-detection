@@ -55,6 +55,11 @@ results/predictions/*
 results/failure_cases/*
 results/metrics/*
 
+!results/metrics/baseline_metrics.csv
+!results/metrics/improved_metrics.csv
+!results/metrics/model_comparison.csv
+
+
 # Keep result folder structure
 !results/predictions/.gitkeep
 !results/failure_cases/.gitkeep
