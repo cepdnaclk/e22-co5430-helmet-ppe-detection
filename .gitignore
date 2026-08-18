@@ -1,74 +1,45 @@
-# ===========================================
 # Python
-# ===========================================
-
 __pycache__/
 *.py[cod]
-*$py.class
+*.pyo
+*.pyd
 
-# ===========================================
-# Virtual Environments
-# ===========================================
-
+# Virtual environments
 .venv/
 venv/
 env/
 
-# ===========================================
-# Jupyter Notebook
-# ===========================================
-
+# Jupyter
 .ipynb_checkpoints/
 
-# ===========================================
-# VS Code
-# ===========================================
+# Dataset - do not commit
+dataset/*
+!dataset/.gitkeep
 
-.vscode/
+# Training outputs
+runs/
+wandb/
 
-# ===========================================
-# Operating System
-# ===========================================
+# Model weights - do not commit
+*.pt
+*.pth
+*.onnx
+*.engine
 
+# Generated results
+results/predictions/*
+results/failure_cases/*
+results/metrics/*
+
+# Keep folder structure
+!results/predictions/.gitkeep
+!results/failure_cases/.gitkeep
+!results/metrics/.gitkeep
+
+# OS
 .DS_Store
 Thumbs.db
 
-# ===========================================
-# Python Build Files
-# ===========================================
-
-build/
-dist/
-*.egg-info/
-
-# ===========================================
-# YOLO / Ultralytics Outputs
-# ===========================================
-
-runs/
-
-# ===========================================
-# Model Weights
-# ===========================================
-
-*.pt
-*.onnx
-
-# ===========================================
-# Dataset Cache
-# ===========================================
-
-*.cache
-
-# ===========================================
-# Logs
-# ===========================================
-
-*.log
-
-# ===========================================
-# Temporary Files
-# ===========================================
-
-*.tmp
-*.temp
+# IDE
+.vscode/
+.idea/
