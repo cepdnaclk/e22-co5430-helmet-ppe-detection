@@ -72,3 +72,8 @@ runs/
 
 *.tmp
 *.temp
+
+# Local Roboflow dataset
+dataset/train/
+dataset/valid/
+dataset/test/
