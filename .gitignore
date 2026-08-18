@@ -1,4 +1,7 @@
+# ============================================================
 # Python
+# ============================================================
+
 __pycache__/
 *.py[cod]
 *.pyo
@@ -12,34 +15,71 @@ env/
 # Jupyter
 .ipynb_checkpoints/
 
-# Dataset - do not commit
+
+# ============================================================
+# Dataset - DO NOT COMMIT
+# ============================================================
+
 dataset/*
 !dataset/.gitkeep
 
+# Explicit local dataset folders
+dataset/train/
+dataset/valid/
+dataset/test/
+
+
+# ============================================================
 # Training outputs
+# ============================================================
+
 runs/
 wandb/
 
-# Model weights - do not commit
+
+# ============================================================
+# Model weights - DO NOT COMMIT
+# ============================================================
+
 *.pt
 *.pth
 *.onnx
 *.engine
 
+
+# ============================================================
 # Generated results
+# ============================================================
+
 results/predictions/*
 results/failure_cases/*
 results/metrics/*
 
-# Keep folder structure
+# Keep result folder structure
 !results/predictions/.gitkeep
 !results/failure_cases/.gitkeep
 !results/metrics/.gitkeep
 
-# OS
+
+# ============================================================
+# Temporary files
+# ============================================================
+
+*.tmp
+*.temp
+
+
+# ============================================================
+# Operating system
+# ============================================================
+
 .DS_Store
 Thumbs.db
 
+
+# ============================================================
 # IDE
+# ============================================================
+
 .vscode/
 .idea/
