@@ -2,11 +2,11 @@
 
 ## 1. Dataset Source
 
-- **Dataset Name:** Construction Site Safety
-- **Source:** Roboflow Universe
-- **Version:** 30
-- **License:** CC BY 4.0
-- **Annotation Format:** YOLOv8
+* **Dataset Name:** Construction Site Safety
+* **Source:** Roboflow Universe
+* **Version:** 30
+* **License:** CC BY 4.0
+* **Annotation Format:** YOLOv8
 
 Dataset URL:
 https://universe.roboflow.com/roboflow-universe-projects/construction-site-safety
@@ -15,14 +15,17 @@ https://universe.roboflow.com/roboflow-universe-projects/construction-site-safet
 
 ## 2. Dataset Statistics
 
-| Split | Number of Images |
-|--------|-----------------:|
-| Training | 521 |
-| Validation | 114 |
-| Testing | 82 |
-| **Total** | **717** |
+| Split      |  Images | Label Files |
+| ---------- | ------: | ----------: |
+| Training   |     521 |         521 |
+| Validation |     114 |         114 |
+| Testing    |      82 |          82 |
+| **Total**  | **717** |     **717** |
 
-Number of Classes: **25**
+* **Number of classes:** 25
+* **Total annotated objects:** 5,570
+
+The dataset is divided into separate training, validation, and testing sets. The corresponding number of image and label files is consistent across all three splits.
 
 ---
 
@@ -58,7 +61,7 @@ Number of Classes: **25**
 
 ## 4. Dataset Structure
 
-```
+```text
 dataset/
 ├── train/
 │   ├── images/
@@ -76,55 +79,153 @@ dataset/
 
 ## 5. Annotation Format
 
-The dataset uses the YOLOv8 annotation format. Each image has a corresponding `.txt` annotation file containing the class ID and normalized bounding-box coordinates.
+The dataset uses the YOLO annotation format.
+
+Each annotation contains five values:
+
+```text
+class_id x_center y_center width height
+```
+
+The bounding-box coordinates are normalized to the range 0 to 1.
 
 ---
 
-## 6. Dataset Verification
+## 6. Annotation Validation
 
-The dataset was successfully verified using Ultralytics YOLOv8.
+A custom Python validation script was developed to check the dataset annotations.
 
-Verification completed:
+The validation checks:
 
-- Dataset loaded successfully.
-- Folder structure verified.
-- `data.yaml` configuration verified.
-- Training, validation, and testing folders detected correctly.
-- Random training images were inspected.
-- Bounding boxes aligned correctly with the annotated objects.
+* Correct YOLO annotation structure
+* Five values per annotation
+* Valid class IDs from 0 to 24
+* Normalized bounding-box coordinates
+* Bounding-box values within the range 0 to 1
 
----
+### Validation Results
 
-## 7. Initial Observations
+* **Label files checked:** 717
+* **Annotations checked:** 5,570
+* **Errors found:** 0
 
-- Images represent real construction-site environments.
-- Dataset includes workers, PPE equipment, machinery, and vehicles.
-- Images contain varying lighting conditions.
-- Some workers are partially occluded.
-- Object sizes vary from small to large.
-- PPE-related classes include Hardhat, Safety Vest, Mask, NO-Hardhat, NO-Safety Vest, and NO-Mask.
+Therefore, all checked YOLO annotations satisfy the required format and value constraints.
 
----
+The validation script is available at:
 
-## 8. Planned Preprocessing
-
-- Resize images to **640 × 640**.
-- Preserve YOLOv8 annotation format.
-- Normalize images during training.
-- Use the provided train, validation, and test split.
+```text
+src/preprocessing/validate_annotations.py
+```
 
 ---
 
-## 9. Planned Data Augmentation
+## 7. Class Distribution Analysis
 
-- Horizontal flipping
-- Mosaic augmentation
-- Random scaling
-- HSV color augmentation
-- Brightness variation
+A class distribution analysis was performed across the training, validation, and testing annotations.
+
+The results show that the dataset is imbalanced across the 25 classes.
+
+The most frequent classes include:
+
+| Class          | Annotations |
+| -------------- | ----------: |
+| Person         |       1,148 |
+| Safety Cone    |         600 |
+| NO-Safety Vest |         582 |
+| Hardhat        |         574 |
+| NO-Mask        |         491 |
+
+Some classes have very few examples:
+
+| Class        | Annotations |
+| ------------ | ----------: |
+| bus          |           1 |
+| fire hydrant |           6 |
+| mini-van     |           7 |
+| semi         |           7 |
+| truck        |           7 |
+
+This class imbalance should be considered when interpreting model performance, particularly for classes with very few training examples.
+
+The generated class distribution chart is available at:
+
+```text
+results/plots/class_distribution.png
+```
+
+The analysis script is available at:
+
+```text
+src/preprocessing/class_distribution.py
+```
 
 ---
 
-## 10. Conclusion
+## 8. Initial Dataset Observations
 
-The Construction Site Safety dataset has been successfully downloaded, verified, and prepared for model training. The dataset is suitable for developing a YOLOv8-based PPE detection system and is ready to be used by Member 2 for baseline model training.
+The dataset represents real construction-site environments and contains workers, PPE equipment, machinery, and vehicles.
+
+Important characteristics include:
+
+* Different lighting conditions
+* Partial object occlusion
+* Different object sizes
+* Crowded construction-site scenes
+* PPE-related classes such as Hardhat, Safety Vest, Mask, NO-Hardhat, NO-Safety Vest, and NO-Mask
+
+These characteristics provide realistic challenges for object detection.
+
+---
+
+## 9. Preprocessing
+
+The YOLO training pipeline uses an image size of **640 × 640 pixels**.
+
+The original train, validation, and test splits are maintained separately to support fair model evaluation and avoid data leakage.
+
+The YOLO annotation format is preserved throughout the dataset preparation process.
+
+---
+
+## 10. Data Augmentation
+
+Data augmentation is used during model training to improve robustness to variations commonly found in construction-site images.
+
+The planned augmentation techniques include:
+
+* Horizontal flipping
+* Mosaic augmentation
+* Random scaling
+* HSV/color augmentation
+* Brightness variation
+* Translation
+
+These transformations are intended to improve robustness to changes in lighting, viewpoint, object position, scale, and scene composition.
+
+Augmentation should be applied to the training data only. Validation and test data should remain unchanged for fair evaluation.
+
+---
+
+## 11. Dataset Quality Summary
+
+The completed dataset analysis produced the following results:
+
+* **717 images**
+* **717 corresponding label files**
+* **5,570 annotations**
+* **25 classes**
+* **0 annotation validation errors**
+* **Class distribution analysis completed**
+* **Class imbalance identified**
+
+The dataset is therefore structurally suitable for the subsequent model training and evaluation stages.
+
+---
+
+## 12. Conclusion
+
+The Construction Site Safety dataset has been downloaded, structured, and validated for the YOLO-based PPE detection project.
+
+The annotation validation confirmed that all 717 label files and 5,570 annotations satisfy the required YOLO format and coordinate constraints. Class distribution analysis also identified significant differences in the number of examples between classes.
+
+These dataset characteristics will be considered during the model training and evaluation stages.
