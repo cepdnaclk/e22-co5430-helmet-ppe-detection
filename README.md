@@ -169,6 +169,22 @@ Training and inference scripts will be added during project development.
 
 ---
 
+## Inference
+
+After obtaining a trained model, predictions can be generated using:
+
+```bash
+python src/inference/predict.py \
+    --model models/best.pt \
+    --source path/to/image
+
+python src/demo/demo.py \
+    --model models/best.pt \
+    --source path/to/image
+```
+
+---
+
 ## Results
 
 Project results will include:
@@ -185,11 +201,11 @@ These outputs will be stored inside the `results/` directory.
 
 ## Team Contributions
 
-| Member | Responsibility |
-|--------|----------------|
-| H.P.P.P.E. Umanda | Dataset preparation, preprocessing, annotation, evaluation |
-| D.S. Wellage | Model implementation and training |
-| R.V. Jayalath | Repository management, documentation, report integration and demo preparation |
+| Member            | Responsibility                                                                |
+|-------------------|-------------------------------------------------------------------------------|
+| H.P.P.P.E. Umanda | Dataset preparation, preprocessing, annotation, evaluation                    |
+| D.S. Wellage      | Model implementation and training                                             |
+| R.V. Jayalath     | Repository management, documentation, report integration and demo preparation |
 
 ---
 
