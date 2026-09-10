@@ -68,6 +68,12 @@ def export_metrics(model_path, output_csv, data_yaml="C:/ppe/dataset/ppe-data/da
     print(final)
     print(f"Inference speed: {avg_ms} ms/image ({fps} FPS)")
 
+
+# NOTE: model paths below point to this project's actual training run
+# locations. If you re-run src/training/train_baseline.py or
+# train_improved.py fresh, outputs will instead land in
+# runs/baseline/weights/best.pt and runs/improved/weights/best.pt
+# respectively — update the paths below to match if reproducing from scratch.
 if __name__ == "__main__":
     export_metrics(
         "C:/ppe/runs/detect/train/weights/best.pt",
