@@ -1,3 +1,11 @@
+"""
+Merges baseline, no-augmentation, and improved model metrics CSVs
+(produced by export_metrics.py) into a single side-by-side
+comparison table, with delta columns showing the improvement of
+the final model over both baseline and the no-augmentation ablation.
+
+Output: results/metrics/model_comparison.csv
+"""
 import pandas as pd
 
 def load(path, tag):
