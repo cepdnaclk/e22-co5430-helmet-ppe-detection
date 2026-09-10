@@ -52,3 +52,5 @@ dataset/*
 # ===========================================
 *.tmp
 *.temp
+# Training run outputs (large files)
+runs/
