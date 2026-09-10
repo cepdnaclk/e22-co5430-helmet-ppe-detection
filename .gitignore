@@ -1,90 +1,83 @@
 # ============================================================
 # Python
 # ============================================================
-
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+*$py.class
 
-# Virtual environments
+# ============================================================
+# Virtual Environments
+# ============================================================
 .venv/
 venv/
 env/
 
-# Jupyter
+# ============================================================
+# Jupyter Notebook
+# ============================================================
 .ipynb_checkpoints/
 
+# ============================================================
+# VS Code / IDE
+# ============================================================
+.vscode/
+.idea/
 
 # ============================================================
-# Dataset - DO NOT COMMIT
+# Operating System
 # ============================================================
-
-dataset/*
-!dataset/.gitkeep
-
-# Explicit local dataset folders
-dataset/train/
-dataset/valid/
-dataset/test/
-
+.DS_Store
+Thumbs.db
 
 # ============================================================
-# Training outputs
+# Python Build Files
 # ============================================================
-
-runs/
-wandb/
-
+build/
+dist/
+*.egg-info/
 
 # ============================================================
-# Model weights - DO NOT COMMIT
+# Model Weights (large files) - DO NOT COMMIT
 # ============================================================
-
 *.pt
 *.pth
 *.onnx
 *.engine
 
+# ============================================================
+# Dataset (large, available on Roboflow) - DO NOT COMMIT
+# ============================================================
+dataset/*
+!dataset/.gitkeep
+dataset/train/
+dataset/valid/
+dataset/test/
 
 # ============================================================
-# Generated results
+# Dataset Cache
 # ============================================================
+*.cache
 
+# ============================================================
+# Training run outputs (large files)
+# ============================================================
+runs/
+wandb/
+
+# ============================================================
+# Generated results - keep our actual result files
+# ============================================================
 results/predictions/*
-results/failure_cases/*
-results/metrics/*
-
-!results/metrics/baseline_metrics.csv
-!results/metrics/improved_metrics.csv
-!results/metrics/model_comparison.csv
-
-
-# Keep result folder structure
 !results/predictions/.gitkeep
-!results/failure_cases/.gitkeep
-!results/metrics/.gitkeep
 
+# NOTE: failure_cases and metrics are intentionally NOT wildcard-ignored
+# here, since we want all analysis.md, images, and CSVs inside them tracked.
 
 # ============================================================
-# Temporary files
+# Logs / Temporary Files
 # ============================================================
-
+*.log
 *.tmp
 *.temp
-
-
-# ============================================================
-# Operating system
-# ============================================================
-
-.DS_Store
-Thumbs.db
-
-
-# ============================================================
-# IDE
-# ============================================================
-
-.vscode/
-.idea/

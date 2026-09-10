@@ -22,6 +22,11 @@ IMAGE_SIZE = 640
 BATCH_SIZE = 16
 
 PROJECT = "runs"
+# NOTE: the baseline results reported in results/metrics/baseline_metrics.csv
+# came from an earlier run saved at runs/detect/train/ (YOLO's default naming
+# when project="runs" without name is used differently across script versions).
+# Re-running this exact script will save to runs/baseline/ instead — results
+# should be equivalent since configuration (epochs, image size, batch size) matches.
 RUN_NAME = "baseline"
 
 
