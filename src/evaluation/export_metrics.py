@@ -1,3 +1,15 @@
+"""
+Generates per-class and overall evaluation metrics for a trained
+YOLO model: precision, recall, F1, mAP50, mAP50-95, and inference
+speed (ms/image, FPS).
+
+Correctly maps Ultralytics' internal per-class result arrays to
+class names using metrics.box.ap_class_index, since not every class
+necessarily appears in a given validation pass (naive index-based
+mapping would misalign results for missing classes).
+
+Outputs a CSV with an "all" summary row followed by per-class rows.
+"""
 from ultralytics import YOLO
 import pandas as pd
 import time
